@@ -9,19 +9,18 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+/* eslint-env serviceworker */
 
-/* eslint-env mocha */
+import fastly from './fastly-adapter.js';
 
-import assert from 'assert';
-import { plugins } from '../src/index.js';
-import CloudflareDeployer from '../src/CloudflareDeployer.js';
-import EdgeBundler from '../src/EdgeBundler.js';
+const cloudflare = require('./cloudflare-adapter.js');
 
-describe('Index Tests', () => {
-  it('exports the correct plugins', async () => {
-    assert.deepStrictEqual(plugins, [
-      CloudflareDeployer,
-      EdgeBundler,
-    ]);
+/* eslint-disable no-restricted-globals */
+if (typeof addEventListener === 'function') {
+  addEventListener('fetch', (event) => {
+    const handler = cloudflare() || fastly();
+    if (typeof handler === 'function') {
+      event.respondWith(handler(event));
+    }
   });
-});
+}

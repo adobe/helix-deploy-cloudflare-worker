@@ -9,19 +9,12 @@
  * OF ANY KIND, either express or implied. See the License for the specific language
  * governing permissions and limitations under the License.
  */
+/* eslint-env serviceworker */
 
-/* eslint-env mocha */
-
-import assert from 'assert';
-import { plugins } from '../src/index.js';
-import CloudflareDeployer from '../src/CloudflareDeployer.js';
-import EdgeBundler from '../src/EdgeBundler.js';
-
-describe('Index Tests', () => {
-  it('exports the correct plugins', async () => {
-    assert.deepStrictEqual(plugins, [
-      CloudflareDeployer,
-      EdgeBundler,
-    ]);
-  });
-});
+module.exports = {
+  // replacing @adobe/fetch with the built-in APIs
+  fetch,
+  Request,
+  Response,
+  Headers,
+};
