@@ -19,7 +19,6 @@ import yauzl from 'yauzl';
 import fse from 'fs-extra';
 import { CLI } from '@adobe/helix-deploy';
 import { createTestRoot } from './utils.js';
-import { validateBundle } from '../../helix-deploy/src/utils.js';
 
 async function assertZipEntries(zipPath, entries) {
   // check zip

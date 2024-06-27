@@ -17,9 +17,8 @@ import assert from 'assert';
 import path, { resolve } from 'path';
 import fse from 'fs-extra';
 import nock from 'nock';
-import { createTestRoot, TestLogger } from './utils.js';
-
 import { CLI } from '@adobe/helix-deploy';
+import { createTestRoot, TestLogger } from './utils.js';
 
 describe('Deploy Test', () => {
   let testRoot;
